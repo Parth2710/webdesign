@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for navbar */
+        #navbarId {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 16px;
+        }
+
+        .initText {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            top: 3rem;
+        }
+
+
+        .icon-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            top: 5rem;
+        }
+
+        .icon-box {
+            width: 200px;
+            height: 16rem;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .icon-box:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon-box i {
+            font-size: 40px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .icon-box h5 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .icon-box p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .midText {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            top: 5rem;
+        }
+
+        .superText .subText {
+            font-size: small;
+            position: relative;
+            left: 3rem;
+        }
+
+        .bannerIcon {
+            position: relative;
+            top: 5rem;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 columns */
+            gap: 20px;
+            /* Spacing between images */
+            padding: 20px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-button {
+            width: 100%;
+        }
+
+        .formBanner {
+            position: relative;
+            top: 5rem;
+        }
+
+        .bottombar {
+            width: 100%;
+            height: 3rem;
+            background: #555;
+            display: flex;
+            position: relative;
+            top: 3rem;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .bottombar .fangIcons {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbarId">
+        <div class="container-fluid">
+            <!-- Logo and STRICT label -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJkAAACUCAMAAAC3HHtWAAAAZlBMVEX///8AAADz8/P5+fn8/Pz29vbn5+fX19fq6uoxMTFBQUG5ubmZmZnLy8s+Pj4fHx/g4OCzs7Nubm7Dw8M4ODhVVVUoKCinp6djY2NMTExpaWl4eHiGhoYJCQlaWlrR0dGPj48UFBTI2jdEAAAEXUlEQVR4nO2c6ZKiQBCE5QYBBVQYUFTe/yVXxwtsPKazMiA2+P7OxJJT3V1dV+9sNjHxDX4YWUNrULHcolwatTe0jmfsMKuNE/VqaCVdnDAwroRDa+mwWt90jctmZmY8aOKh5TxY5S1hRp4MredOWreFGYE5tKAbR6PLZmhBN4onYcZuaEVXwmdhxmFoSRfc/FlY4w+t6cJeMdlIFjNVhI3kBvAXirDFOHxGpJosGlrTL9ZSVTYOkymubCwmc37UXTYOl3FQTTaSMEPd/9nQkq4o+38/ju0/MxWTjSUwe77L65FsMjUuG034b2cdXc047sszZifMGM9SniKz9m2+H8vmP5O0YsbjEKUM27ZO2LbyA6+5LeTDYLZlxml0PEZF6DlMtZYXRtlmnedBWe2Klee0f3i5m4IquhVYklXUuUjzXUpaY/e46Qb5ebkNHze2tzmLda9qzbRaGwpBJe9K7HijfujMPIqVeCIJ1ajjLi50+v59bfyqfvkto9ymLXF+0WetFnvBeprdE0U/k6Wxd4jT7effPB1dKbOZu28+9xd+ZAJK9/3iaBFIrGiiZmoC5Lg0tRwgwxK9WM2SI8xA40or+/wFXRaQtC/chT5rIE2I3/hXAfQra+acqSsHzgB1LZET4DF1zV19YTPxS6nFEhHGNNkCETb7KmzQBLqbfKIw7GbqKdNJgZX7TLV+LsUPJIy4/xto9zO9LFq6DT5/Qg+0QcA7mQVoMrXlJsQSLSI8l+nEOILCrIokDG73+6zwv0STYK+ngyTCFhQ2i0nCjBRV1tNBlQH0/8TrHC48ssLZHBU2YzmNElb2osAIg8+7sNzZHlbGSoFxm7FiIHyfsZQFsDJKnfEM7M9opRa4dMzyGviU0OseCAg8WUUrtsBug5bTwdV2WhQEB2i0yNHYqD3bP3Fv8MoDdl8TQq/pSoUpI1aCluAZIBYcK2ynMQvuWDLMO5yn9YQuT3VkSxAsHabVz85AlSpmmwLbasyNdtpqwAC8S11OxKvZzBbKWZr+HA6xU3Gh0M0JXLYyo9S93HlTB3eyg1YJkhc9PmjmOt0BnzRD0kErNWafzl/0Wj1cZ/uLrlvjBbY39pqxGt2laafs/DOgHd7Suk9X9FudCauVciEAMjzikJeBlV+4lyeUDzC9LZYOEHca+n6YZzS0yGc2JGENKIyXraMzCLS51R+B2W3OgITIu2ZGoVvm9TDBc2gF2T3IR0Nijz6kmz1yL8EPsutZCr6eFM3wGtH/2EXyfMLTJB1Mue6d9HNrsUgNLG33INRWAQdDexFJjDmPmuO3vqPJ5/P54oN7AVs7L/Fe5p/Brog93/fdw6rYvq6j8t51+r3OY7Hrvpd0kqjs+xsCWXfRxS6UlylZ7+NCL1J6ahk8e/Yed9s8PlYHR/fVAjlJsX7suuXeE/cWqrYiW58sVy+y6FPDwQ+jbVVuql1BttcNy088L/G/2s62Y5qyb0knJiYmJiYmJv5//gGLz0Q4AK/tmQAAAABJRU5ErkJggg=="
+                    alt="Logo">
+                <span class="ms-2">STRICT</span>
+            </a>
+            <!-- Navbar toggle button for mobile view -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <!-- Dropdown for Services -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Service Main 1</a></li>
+                            <li><a class="dropdown-item" href="#">Service Main 2</a></li>
+                            <li><a class="dropdown-item" href="#">Service Main 3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="initText">
+            <div>
+                <h3>Simple & pure design</h3>
+            </div>
+            <div>
+                <h4>Every detail serves a purpose, creating an effortless harmony that calms the senses</h4>
+            </div>
+        </div>
+    </main>
+
+    <div class="container">
+        <div class="icon-container">
+            <!-- Icon 1 -->
+            <div class="icon-box">
+                <i class="bi bi-phone"></i>
+                <h5>Optimized for all devices</h5>
+                <p>STRICT has been designed to be fully responsive on all devices</p>
+            </div>
+
+            <!-- Icon 2 -->
+            <div class="icon-box">
+                <i class="bi bi-telegram"></i>
+                <h5>Clean and Minimal Design</h5>
+                <p>The multipurpose theme is created for projects</p>
+            </div>
+
+            <!-- Icon 3 -->
+            <div class="icon-box">
+                <i class="bi bi-bell"></i>
+                <h5>Font Awesome Icon</h5>
+                <p>It has many icons support</p>
+            </div>
+        </div>
+    </div>
+    <div class="midText">
+        <div class="superText">
+            <div>
+                <h4>Show your work like a pro.</h4>
+            </div>
+            <div>
+                <h5 class="subText">Contact me if you like my work</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="bannerIcon">
+        <div class="image-grid">
+            <img src="https://images.bewakoof.com/t640/men-s-black-itachi-moment-graphic-printed-oversized-t-shirt-551717-1667562106-1.jpg"
+                alt="Image 1">
+            <img src="https://images.bewakoof.com/t1080/women-s-black-tropical-vibes-typography-oversized-t-shirt-493433-1667493507-1.jpg"
+                alt="Image 2">
+            <img src="https://images.bewakoof.com/t640/men-s-black-mickey-squad-graphic-printed-oversized-t-shirt-597938-1690468394-1.jpg"
+                alt="Image 3">
+            <img src="https://images.bewakoof.com/t640/men-s-black-raph-graphic-printed-oversized-t-shirt-602713-1690266158-1.jpg"
+                alt="Image 4">
+            <img src="https://images.bewakoof.com/t640/women-purple-solid-oversize-t-shirt-580331-1686300365-1.jpg"
+                alt="Image 5">
+            <img src="https://images.bewakoof.com/t640/women-s-purple-billionaire-girls-club-graphic-printed-oversized-t-shirt-605543-1690537399-1.jpg"
+                alt="Image 6">
+        </div>
+    </div>
+
+    <div class="formBanner">
+        <div class="form-container">
+            <h2 class="form-title">Stay with us</h2>
+            <form>
+                <!-- Full Name -->
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+                </div>
+
+                <!-- Email Address -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                </div>
+
+                <!-- Message -->
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Your message" required></textarea>
+                </div>
+
+                <!-- Subscribe to Newsletter -->
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="subscribeCheck">
+                    <label class="form-check-label" for="subscribeCheck">Subscribe to newsletter</label>
+                </div>
+
+                <!-- Send Button -->
+                <button type="submit" class="btn btn-primary form-button">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="bottombar">
+        <div>
+            <h6 class="copyright">Copyright 2014, STRICT</h6>
+        </div>
+        <div class="fangIcons">
+            <div>
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-twitter"></i>
+                <i class="bi bi-google"></i>
+                <i class="bi bi-linkedin"></i>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>
